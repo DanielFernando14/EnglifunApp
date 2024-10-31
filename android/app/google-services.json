@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "103847852380",
+    "firebase_url": "https://englifun-app-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "englifun-app",
+    "storage_bucket": "englifun-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103847852380:android:2bb9abe33ae09f345b2999",
+        "android_client_info": {
+          "package_name": "com.example.shiningworld"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103847852380-j56htl3hsv711q47p3p88u3c52poubp9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbIA04onpvVvNji0zeVAh5GwLPr1IHc3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103847852380-j56htl3hsv711q47p3p88u3c52poubp9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "103847852380-5bqs0mbgf5ecjpgrg0luaklm210f0gnn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.shiningworld"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

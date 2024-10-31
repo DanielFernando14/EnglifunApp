@@ -1,0 +1,438 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:englifun/Dashboard.dart';
+import 'package:englifun/balabalaregistration.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+
+class BalabalaLogin extends StatefulWidget {
+  const BalabalaLogin({super.key});
+  @override
+  State<BalabalaLogin> createState() => _BalabalaLoginState();
+}
+
+class _BalabalaLoginState extends State<BalabalaLogin> {
+  int userCount = 0;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _showPassword = false;
+  void showEmailNotRegisteredDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text(
+          'Email Not Registered',
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'Kartooni',
+          ),
+        ),
+        content: const Text(
+          'The email address you entered is not registered. Please register first.',
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'Kartooni',
+          ),
+        ),
+        backgroundColor: const Color.fromARGB(255, 8, 160, 99),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text(
+              'OK',
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Kartooni',
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void showInvalidInputDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text(
+          'Invalid Data',
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'Kartooni',
+          ),
+        ),
+        content: const Text(
+          'Please make sure all fields are filled correctly before logging in.',
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'Kartooni',
+          ),
+        ),
+        backgroundColor: const Color.fromARGB(255, 8, 160, 99),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text(
+              'OK',
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Kartooni',
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void BalabalaLogin() {
+    String email = _emailController.text.trim();
+    String name = _nameController.text.trim();
+    String password = _passwordController.text;
+    // If input is an email address
+    if (email.contains('@')) {
+      // Verify user BalabalaLogin with email and password
+      FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((userCredential) {
+        // BalabalaLogin successful, navigate to Dashboard class
+        FirebaseFirestore.instance
+            .collection('Englifun')
+            .doc('Englifun Database')
+            .collection('User Database')
+            .doc(
+                'user$userCount') // Replace userCount with the actual user count variable
+
+            .get()
+            .then((snapshot) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Dashboard(
+                username: '',
+                name: '',
+              ),
+            ),
+          );
+        });
+      }).catchError((error) {
+        // Error handling if BalabalaLogin fails
+        print('Error logging in: $error');
+        if (error is FirebaseAuthException) {
+          if (error.code == 'user-not-found') {
+            // If email address is not registered, show error dialog
+            showEmailNotRegisteredDialog();
+          } else if (error.code == 'wrong-password') {
+            // If password is wrong, show error dialog
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: const Text(
+                  'Wrong Password',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Kartooni',
+                  ),
+                ),
+                content: const Text(
+                  'The password you entered is wrong. Please try again.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Kartooni',
+                  ),
+                ),
+                backgroundColor: const Color.fromARGB(255, 8, 160, 99),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      'OK',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Kartooni',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          } else {
+            // If other error occurs, show error dialog
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: const Text(
+                  'BalabalaLogin Failed',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Kartooni',
+                  ),
+                ),
+                content: const Text(
+                  'An error occurred while logging in. Please try again.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Kartooni',
+                  ),
+                ),
+                backgroundColor: const Color.fromARGB(255, 8, 160, 99),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      'OK',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Kartooni',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+        }
+      });
+    } else {
+      // If input is a name, try to find user based on name in Firestore
+      FirebaseFirestore.instance
+          .collection('Englifun')
+          .doc('Englifun Database')
+          .collection('User Database')
+          .where('Name', isEqualTo: name)
+          .get()
+          .then((querySnapshot) {
+        if (querySnapshot.size == 0) {
+          // Name not found in Firestore, show error message
+          showEmailNotRegisteredDialog();
+        } else if (querySnapshot.size == 1) {
+          // Name found, get user data from Firestore
+          String userId = querySnapshot.docs.first.id;
+          FirebaseFirestore.instance
+              .collection('Englifun')
+              .doc('Englifun Database')
+              .collection('User Database')
+              .doc(userId)
+              .get()
+              .then((snapshot) {
+            // Perform BalabalaLogin with registered email in Firestore
+            FirebaseAuth.instance
+                .signInWithEmailAndPassword(
+                    email: snapshot['Email'], password: password)
+                .then((userCredential) {
+              // BalabalaLogin successful, navigate to Dashboard class
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Dashboard(
+                    name: '',
+                    username: '',
+                  ),
+                ),
+              );
+            });
+          });
+        } else {
+          // If there are more than one user with the same name (should not happen)
+          // ... add handling for this case as needed ...
+        }
+      }).catchError((error) {
+        // Error handling if error occurs while searching name in Firestore
+        // ... your error handling code ...
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () async {
+        // This action is performed when the "Back" button is pressed
+        // Navigate back to registration page
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const BalabalaRegistration(),
+          ),
+        );
+        // Do not allow default navigation back
+        return false;
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            return OrientationBuilder(
+              builder: (BuildContext context, Orientation orientation) {
+                return Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: const AssetImage(
+                          'assets/images/Background SignUp.jpg'),
+                      fit: BoxFit.cover,
+                      colorFilter: ColorFilter.mode(
+                          Colors.black.withOpacity(0.15), BlendMode.darken),
+                    ),
+                  ),
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          SizedBox(
+                            height:
+                                orientation == Orientation.portrait ? 250 : 100,
+                          ),
+                          const Align(
+                            alignment: Alignment.topCenter,
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 0),
+                              child: Text(
+                                'BalabalaLogin',
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  fontFamily: 'Therestone',
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 16.0),
+                          SizedBox(
+                            width: 342,
+                            height: 42,
+                            child: TextFormField(
+                              controller: _emailController,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Dinofont',
+                                fontSize: 21,
+                              ),
+                              decoration: const InputDecoration(
+                                hintText: 'Enter your name or email address',
+                                hintStyle: TextStyle(
+                                  color: Colors.white70,
+                                  fontFamily: 'Dinofont',
+                                  fontSize: 21,
+                                ),
+                              ),
+                              textAlign: TextAlign.left,
+                            ),
+                          ),
+                          const SizedBox(height: 16.0),
+                          SizedBox(
+                            width: 342,
+                            height: 42,
+                            child: TextFormField(
+                              controller: _passwordController,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Dinofont',
+                                fontSize: 21,
+                              ),
+                              decoration: InputDecoration(
+                                hintText: 'Enter your password',
+                                hintStyle: const TextStyle(
+                                  color: Colors.white70,
+                                  fontFamily: 'Dinofont',
+                                  fontSize: 21,
+                                ),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _showPassword
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _showPassword = !_showPassword;
+                                    });
+                                  },
+                                ),
+                              ),
+                              textAlign: TextAlign.left,
+                              obscureText: !_showPassword,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Positioned(
+                        bottom: 30,
+                        left: 30,
+                        right: 30,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // Validate if input is empty
+                            if (_emailController.text.isEmpty) {
+                              // Show dialog to prompt user to enter name or email
+                              showInvalidInputDialog();
+                            } else {
+                              // Perform BalabalaLogin
+                              BalabalaLogin();
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor:
+                                const Color.fromARGB(255, 8, 160, 99),
+                            minimumSize: const Size.fromHeight(20.0),
+                            padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          ),
+                          child: const Text(
+                            'BalabalaLogin',
+                            style: TextStyle(
+                              fontFamily: 'BlobbyChug-Bold',
+                              fontStyle: FontStyle.italic,
+                              fontSize: 25,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 50,
+                        left: 20,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const BalabalaRegistration(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: 38,
+                            height: 38,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color.fromARGB(208, 216, 175, 7),
+                            ),
+                            child: const Icon(
+                              Icons.arrow_back,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
+          },
+        ),
+      ),
+    );
+  }
+}

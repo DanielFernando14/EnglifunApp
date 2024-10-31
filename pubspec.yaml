@@ -1,0 +1,269 @@
+name: englifun
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+  percent_indicator: ^4.2.3
+  google_nav_bar: ^5.0.6
+  line_icons: ^2.0.3
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.16.0
+  cloud_firestore: ^4.14.0
+  shared_preferences: ^2.2.2
+  firebase_database: ^10.4.0
+  fluttertoast: ^8.2.4
+  image_picker: ^1.0.7
+  csv: ^6.0.0
+  provider: ^6.1.1
+  sqflite: ^2.3.2
+  http: ^1.2.0
+  flutter_lints: ^4.0.0
+  audioplayers: ^6.0.0
+  flutter_tts: ^4.0.2
+  path_provider: ^2.1.2
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/Englifun Logo Icon.jpeg"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+
+
+flutter:
+
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/audio/
+    - assets/dataset/
+    - assets/icons/
+  fonts:
+    - family: AstroBoby
+      fonts:
+        - asset: assets/fonts/AstroBoby.ttf
+    - family: BlobbyChug-Bold
+      fonts:
+        - asset: assets/fonts/BlobbyChug-Bold.ttf
+    - family: BlobbyChug
+      fonts:
+        - asset: assets/fonts/BlobbyChug.ttf
+    - family: Bubblegum
+      fonts:
+        - asset: assets/fonts/Bubblegum.ttf
+    - family: ComicSpeeds
+      fonts:
+        - asset: assets/fonts/ComicSpeeds.ttf
+    - family: CrashLanding
+      fonts:
+        - asset: assets/fonts/CrashLanding.ttf
+    - family: Dino-Dingbats
+      fonts:
+        - asset: assets/fonts/Dino-Dingbats.ttf
+    - family: Dinofont
+      fonts:
+        - asset: assets/fonts/Dinofont.ttf
+    - family: Dolpino
+      fonts:
+        - asset: assets/fonts/Dolpino.ttf
+    - family: DrawingKids
+      fonts:
+        - asset: assets/fonts/DrawingKids.ttf
+    - family: DrawingKids-Italic.ttf
+      fonts:
+        - asset: assets/fonts/DrawingKids-Italic.ttf
+    - family: HandyCraft
+      fonts:
+        - asset: assets/fonts/HandyCraft.ttf
+    - family: HellominyHighlight
+      fonts:
+        - asset: assets/fonts/HellominyHighlight.ttf
+    - family: HelloSunny
+      fonts:
+        - asset: assets/fonts/HelloSunny.ttf
+    - family: Kartooni
+      fonts:
+        - asset: assets/fonts/Kartooni.ttf
+    - family: KidsNote
+      fonts:
+        - asset: assets/fonts/KidsNote.ttf
+    - family: KidsNow
+      fonts:
+        - asset: assets/fonts/KidsNow.ttf
+    - family: KidsPlace
+      fonts:
+        - asset: assets/fonts/KidsPlace.ttf
+    - family: KidsStory
+      fonts:
+        - asset: assets/fonts/KidsStory.ttf
+    - family: Luducudu-Extrude
+      fonts:
+        - asset: assets/fonts/Luducudu-Extrude.ttf
+    - family: Luducudu
+      fonts:
+        - asset: assets/fonts/Luducudu.ttf
+    - family: LuducuduGradient
+      fonts:
+        - asset: assets/fonts/LuducuduGradient.ttf
+    - family: LydoraKids
+      fonts:
+        - asset: assets/fonts/LydoraKids.ttf
+    - family: Madtone
+      fonts:
+        - asset: assets/fonts/Madtone.ttf
+    - family: Meowy
+      fonts:
+        - asset: assets/fonts/Meowy.ttf
+    - family: OpenSans-Bold
+      fonts:
+        - asset: assets/fonts/OpenSans-Bold.ttf
+    - family: OpenSans-BoldItalic
+      fonts:
+        - asset: assets/fonts/OpenSans-BoldItalic.ttf
+    - family: OpenSans-ExtraBold
+      fonts:
+        - asset: assets/fonts/OpenSans-ExtraBold.ttf
+    - family: OpenSans-ExtraBoldItalic
+      fonts:
+        - asset: assets/fonts/OpenSans-ExtraBoldItalic.ttf
+    - family: OpenSans-Italic
+      fonts:
+        - asset: assets/fonts/OpenSans-Italic.ttf
+    - family: OpenSans-ItalicSemiBold
+      fonts:
+        - asset: assets/fonts/OpenSans-ItalicSemiBold.ttf
+    - family: OpenSans-Light
+      fonts:
+        - asset: assets/fonts/OpenSans-Light.ttf
+    - family: OpenSans-LightItalic
+      fonts:
+        - asset: assets/fonts/OpenSans-LightItalic.ttf
+    - family: OpenSans-Medium
+      fonts:
+        - asset: assets/fonts/OpenSans-Medium.ttf
+    - family: OpenSans-MediumItalic
+      fonts:
+        - asset: assets/fonts/OpenSans-MediumItalic.ttf
+    - family: OpenSans-Regular
+      fonts:
+        - asset: assets/fonts/OpenSans-Regular.ttf
+    - family: OpenSans-SemiBold
+      fonts:
+        - asset: assets/fonts/OpenSans-SemiBold.ttf
+    - family: OpenSans-SemiBoldItalic
+      fonts:
+        - asset: assets/fonts/OpenSans-SemiBoldItalic.ttf
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans.ttf
+    - family: OpenSansCondensed-Bold
+      fonts:
+        - asset: assets/fonts/OpenSansCondensed-Bold.ttf
+    - family: OpenSansCondensed-BoldItalic
+      fonts:
+        - asset: assets/fonts/OpenSansCondensed-BoldItalic.ttf
+    - family: OpenSansCondensed-ExtraBold
+      fonts:
+        - asset: assets/fonts/OpenSansCondensed-ExtraBold.ttf
+    - family: OpenSansCondensed-ExtraBoldItalic
+      fonts:
+        - asset: assets/fonts/OpenSansCondensed-ExtraBoldItalic.ttf
+    - family: OpenSansCondensed-Italic
+      fonts:
+        - asset: assets/fonts/OpenSansCondensed-Italic.ttf
+    - family: OpenSansCondensed-Light
+      fonts:
+        - asset: assets/fonts/OpenSansCondensed-Light.ttf
+    - family: OpenSansCondensed-LightItalic
+      fonts:
+        - asset: assets/fonts/OpenSansCondensed-LightItalic.ttf
+    - family: OpenSansCondensed-Medium
+      fonts:
+        - asset: assets/fonts/OpenSansCondensed-Medium.ttf
+    - family: OpenSansCondensed-MediumItalic
+      fonts:
+        - asset: assets/fonts/OpenSansCondensed-MediumItalic.ttf
+    - family: OpenSansCondensed-Regular
+      fonts:
+        - asset: assets/fonts/OpenSansCondensed-Regular.ttf
+    - family: OpenSansCondensed-SemiBold
+      fonts:
+        - asset: assets/fonts/OpenSansCondensed-SemiBold.ttf
+    - family: OpenSansCondensed-SemiBoldItalic
+      fonts:
+        - asset: assets/fonts/OpenSansCondensed-SemiBoldItalic.ttf
+    - family: OpenSansSemiCondensed-Bold
+      fonts:
+        - asset: assets/fonts/OpenSansSemiCondensed-Bold.ttf
+    - family: OpenSansSemiCondensed-BoldItalic
+      fonts:
+        - asset: assets/fonts/OpenSansSemiCondensed-BoldItalic.ttf
+    - family: OpenSansSemiCondensed-ExtraBold
+      fonts:
+        - asset: assets/fonts/OpenSansSemiCondensed-ExtraBold.ttf
+    - family: OpenSansSemiCondensed-ExtraBoldItalic
+      fonts:
+        - asset: assets/fonts/OpenSansSemiCondensed-ExtraBoldItalic.ttf
+    - family: OpenSansSemiCondensed-Italic
+      fonts:
+        - asset: assets/fonts/OpenSansSemiCondensed-Italic.ttf
+    - family: OpenSansSemiCondensed-Light
+      fonts:
+        - asset: assets/fonts/OpenSansSemiCondensed-Light.ttf
+    - family: OpenSansSemiCondensed-LightItalic
+      fonts:
+        - asset: assets/fonts/OpenSansSemiCondensed-LightItalic.ttf
+    - family: OpenSansSemiCondensed-Medium
+      fonts:
+        - asset: assets/fonts/OpenSansSemiCondensed-Medium.ttf
+    - family: OpenSansSemiCondensed-MediumItalic
+      fonts:
+        - asset: assets/fonts/OpenSansSemiCondensed-MediumItalic.ttf
+    - family: OpenSansSemiCondensed-Regular
+      fonts:
+        - asset: assets/fonts/OpenSansSemiCondensed-Regular.ttf
+    - family: OpenSansSemiCondensed-SemiBold
+      fonts:
+        - asset: assets/fonts/OpenSansSemiCondensed-SemiBold.ttf
+    - family: OpenSansSemiCondensed-SemiBolditalic
+      fonts:
+        - asset: assets/fonts/OpenSansSemiCondensed-SemiBolditalic.ttf
+    - family: SchoolMania
+      fonts:
+        - asset: assets/fonts/SchoolMania.ttf
+    - family: SillyKids-Outline
+      fonts:
+        - asset: assets/fonts/SillyKids-Outline.ttf
+    - family: SillyKids-Regular
+      fonts:
+        - asset: assets/fonts/SillyKids-Regular.ttf
+    - family: Spincycle-3D
+      fonts:
+        - asset: assets/fonts/Spincycle-3D.otf
+    - family: Spincycle
+      fonts:
+        - asset: assets/fonts/Spincycle.otf
+    - family: SpookyBooah
+      fonts:
+        - asset: assets/fonts/SpookyBooah.ttf
+    - family: Therestone
+      fonts:
+        - asset: assets/fonts/Therestone.ttf
+    - family: Wigglye
+      fonts:
+        - asset: assets/fonts/Wigglye.ttf

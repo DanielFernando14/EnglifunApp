@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>103847852380-5bqs0mbgf5ecjpgrg0luaklm210f0gnn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.103847852380-5bqs0mbgf5ecjpgrg0luaklm210f0gnn</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA5qMuM_7VmTfYmVXnGHSz-LPFg8Du49PQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>103847852380</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.shiningworld</string>
+	<key>PROJECT_ID</key>
+	<string>englifun-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>englifun-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:103847852380:ios:1dadb73f3d79e4805b2999</string>
+	<key>DATABASE_URL</key>
+	<string>https://englifun-app-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>
